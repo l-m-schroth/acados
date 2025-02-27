@@ -44,6 +44,7 @@ from .acados_ocp_options import AcadosOcpOptions, INTEGRATOR_TYPES, COLLOCATION_
 from .acados_ocp import AcadosOcp
 from .casadi_function_generation import GenerateContext
 from .utils import make_object_json_dumpable, get_acados_path, format_class_dict, get_shared_lib_ext, render_template
+from datetime import datetime
 
 
 def find_non_default_fields_of_obj(obj: Union[AcadosOcpCost, AcadosOcpConstraints, AcadosOcpOptions], stage_type='all') -> list:
@@ -140,7 +141,8 @@ class AcadosMultiphaseOcp:
         self.n_phases = n_phases
         self.N_list = N_list
 
-        self.name = f'multiphase_ocp{"_".join(map(str, self.N_list))}'
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.name = f'multiphase_ocp_{"_".join(map(str, self.N_list))}_{timestamp}'
         self.model = [AcadosModel() for _ in range(n_phases)]
         """Model definitions, type :py:class:`acados_template.acados_model.AcadosModel`"""
         self.cost = [AcadosOcpCost() for _ in range(n_phases)]
