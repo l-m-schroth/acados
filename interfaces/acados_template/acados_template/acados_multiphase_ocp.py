@@ -141,8 +141,9 @@ class AcadosMultiphaseOcp:
         self.n_phases = n_phases
         self.N_list = N_list
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         self.name = f'multiphase_ocp_{"_".join(map(str, self.N_list))}_{timestamp}'
+
         self.model = [AcadosModel() for _ in range(n_phases)]
         """Model definitions, type :py:class:`acados_template.acados_model.AcadosModel`"""
         self.cost = [AcadosOcpCost() for _ in range(n_phases)]

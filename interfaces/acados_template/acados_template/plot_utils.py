@@ -32,15 +32,15 @@
 import shutil
 import matplotlib
 
-def latexify_plot() -> None:
+def latexify_plot(fontsize) -> None:
     text_usetex = True if shutil.which('latex') else False
     params = {
             'text.latex.preamble': r"\usepackage{gensymb} \usepackage{amsmath}",
-            'axes.labelsize': 12,
-            'axes.titlesize': 12,
-            'legend.fontsize': 12,
-            'xtick.labelsize': 12,
-            'ytick.labelsize': 12,
+            'axes.labelsize': fontsize,
+            'axes.titlesize': fontsize,
+            'legend.fontsize': fontsize,
+            'xtick.labelsize': fontsize,
+            'ytick.labelsize': fontsize,
             'text.usetex': text_usetex,
             'font.family': 'serif'
     }
